@@ -33,11 +33,6 @@ having Count=2
 
 6. Create a new customer invoice id by combining a customer’s invoice id with their first and last name while ordering your query in the following order: firstname, lastname, and invoiceID.
 
-select a.FirstName,a.LastName,a.InvoiceId,
-a.FirstName || a.LastName || a.InvoiceId as NewInvoiceId
-from
-(select i.InvoiceId,c.FirstName,c.LastName
-from Invoices as i
-left join Customers as c
-on i.CustomerId=c.CustomerId) as a
-where a.FirstName like "Astrid"
+select FirstName || LastName ||invoiceId from Customers
+inner join invoices on invoices.customerId = Customers.customerId
+where FirstName like "Astrid"
